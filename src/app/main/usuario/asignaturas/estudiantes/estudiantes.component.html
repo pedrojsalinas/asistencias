@@ -1,0 +1,45 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{ dialogTitle }}</span>
+            <button
+                mat-icon-button
+                (click)="matDialogRef.close()"
+                aria-label="Close dialog"
+            >
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+        <mat-list role="list">
+            <div *ngFor="let estudiante of estudiantes">
+                <mat-list-item role="listitem"
+                    >{{ estudiante.nombres }}
+                    {{ estudiante.apellidos }}</mat-list-item
+                >
+                <mat-divider></mat-divider>
+            </div>
+        </mat-list>
+        <span *ngIf="estudiantes.length == 0">No hay estudiantes.</span>
+    </div>
+
+    <div
+        mat-dialog-actions
+        class="m-0 p-16"
+        fxLayout="row"
+        fxLayoutAlign="end center"
+    >
+        <!-- <button
+            mat-raised-button
+            class="save-button"
+            color="accent"
+            (click)="login()"
+            [disabled]="loginForm.invalid"
+            aria-label="INGRESAR"
+        >
+            INGRESAR
+        </button> -->
+    </div>
+</div>

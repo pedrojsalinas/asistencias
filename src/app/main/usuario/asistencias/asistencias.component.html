@@ -1,0 +1,76 @@
+<div id="asistencias" class="page-layout carded fullwidth">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div
+            class="header accent"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="space-between center"
+        >
+            <!-- APP TITLE -->
+            <div
+                class="logo mb-24 mb-md-0"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+            >
+                <mat-icon
+                    class="logo-icon s-32 mr-16"
+                    [@animate]="{
+                        value: '*',
+                        params: { delay: '50ms', scale: '0.2' }
+                    }"
+                >
+                    library_books
+                </mat-icon>
+                <span
+                    class="logo-text h1"
+                    [@animate]="{
+                        value: '*',
+                        params: { delay: '100ms', x: '-25px' }
+                    }"
+                >
+                    {{ asignatura.nombre }} - Asistencias
+                </span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <!-- <div class="search-wrapper mx-32 mx-md-0">
+                <div
+                    class="search"
+                    fxFlex
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                >
+                    <mat-icon>search</mat-icon>
+                    <input #filter placeholder="Search a category" />
+                </div>
+            </div> -->
+            <!-- / SEARCH -->
+
+            <!-- ADD BUTTON -->
+            <button
+                mat-raised-button
+                (click)="agregarAsistencia()"
+                class="add-category-button fuse-white mt-24 mt-md-0"
+            >
+                <span>AGREGAR ASISTENCIA</span>
+            </button>
+            <!-- / ADD BUTTON -->
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+            <asistencias-list></asistencias-list>
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

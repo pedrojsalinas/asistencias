@@ -1,0 +1,136 @@
+<div id="asignaturas" class="page-layout carded fullwidth">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div
+            class="header accent"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="space-between center"
+        >
+            <!-- APP TITLE -->
+            <div
+                class="logo mb-24 mb-md-0"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+            >
+                <mat-icon
+                    class="logo-icon s-32 mr-16"
+                    [@animate]="{
+                        value: '*',
+                        params: { delay: '50ms', scale: '0.2' }
+                    }"
+                >
+                    library_books
+                </mat-icon>
+                <span
+                    class="logo-text h1"
+                    [@animate]="{
+                        value: '*',
+                        params: { delay: '100ms', x: '-25px' }
+                    }"
+                >
+                    Asignaturas
+                </span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <!-- SEARCH -->
+            <!-- <div class="search-wrapper mx-32 mx-md-0">
+                <div
+                    class="search"
+                    fxFlex
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                >
+                    <mat-icon>search</mat-icon>
+                    <input #filter placeholder="Search a category" />
+                </div>
+            </div> -->
+            <!-- / SEARCH -->
+
+            <!-- ADD BUTTON -->
+            <!-- <button
+                mat-raised-button
+                (click)="addCategory()"
+                class="add-category-button fuse-white mt-24 mt-md-0"
+            >
+                <span>ADD NEW CATEGORY</span>
+            </button> -->
+            <!-- / ADD BUTTON -->
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+            <div
+                class="mt-32"
+                fxLayout="row wrap"
+                fxLayoutAlign="center stretch"
+                fxLayoutGap="12px"
+            >
+                <div class="fuse-card" *ngFor="let asignatura of asignaturas">
+                    <div
+                        class="p-16"
+                        fxLayout="row"
+                        fxLayoutAlign="space-between center"
+                    >
+                        <div class="pr-16">
+                            <!-- <div class="h4 secondary-text">
+                                <b>Paralelo:</b> {{ asignatura.aula }} -
+                                {{ asignatura.paralelo }}
+                            </div> -->
+                            <div class="h1">{{ asignatura.nombre }}</div>
+                        </div>
+
+                        <div class="w-80 h-80">
+                            <img
+                                [src]="asignatura.imagen"
+                                *ngIf="asignatura.imagen"
+                            />
+                            <img
+                                src="https://748073e22e8db794416a-cc51ef6b37841580002827d4d94d19b6.ssl.cf3.rackcdn.com/not-found.png"
+                                *ngIf="!asignatura.imagen"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="p-16 pt-0 line-height-1.75" fxLayout="column">
+                        <span><b>Paralelo:</b> {{ asignatura.paralelo }}</span>
+                        <span><b>Aula:</b> {{ asignatura.aula }}</span>
+                    </div>
+
+                    <div
+                        class="p-8 pt-0"
+                        fxLayout="row"
+                        fxLayoutGap="12px"
+                        fxLayoutAlign="center center"
+                    >
+                        <button
+                            mat-raised-button
+                            (click)="verEstudiantes(asignatura)"
+                            color="accent"
+                        >
+                            ALUMNOS
+                        </button>
+                        <button
+                            mat-raised-button
+                            color="accent"
+                            [routerLink]="['/asistencias', asignatura.id]"
+                            routerLinkActive="router-link-active"
+                        >
+                            ASISTENCIAS
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

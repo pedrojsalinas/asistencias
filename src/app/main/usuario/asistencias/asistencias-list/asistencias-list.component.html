@@ -1,0 +1,83 @@
+<mat-table
+    class="asistencias-table"
+    #table
+    [dataSource]="dataSource"
+    matSort
+    [@animateStagger]="{ value: '50' }"
+    fusePerfectScrollbar
+    [style.display]="dataSource.filteredData.length != 0 ? 'block' : 'none'"
+>
+    <!-- estudiante Column -->
+    <ng-container matColumnDef="estudiante">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Estudiante</mat-header-cell
+        >
+        <mat-cell *matCellDef="let asistencia">
+            <p class="text-truncate" *ngIf="asistencia.estudiante">
+                {{ (asistencia.estudiante | doc | async)?.nombres }}
+                {{ (asistencia.estudiante | doc | async)?.apellidos }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Fecha Asistencia</mat-header-cell
+        >
+        <mat-cell *matCellDef="let asistencia">
+            <p class="asistencia text-truncate" *ngIf="asistencia.fecha">
+                {{ asistencia.fecha.toDate() | date: "shortDate" }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaRegistro">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Fecha Registro</mat-header-cell
+        >
+        <mat-cell *matCellDef="let asistencia">
+            <p
+                class="asistencia text-truncate"
+                *ngIf="asistencia.fechaRegistro"
+            >
+                {{ asistencia.fechaRegistro.toDate() | date: "short" }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nota">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Nota</mat-header-cell
+        >
+        <mat-cell *matCellDef="let asistencia">
+            <p class="asistencia text-truncate">
+                {{ asistencia.nota | slice: 0:20 }}
+            </p>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+        *matHeaderRowDef="displayedColumns; sticky: true"
+    ></mat-header-row>
+
+    <mat-row
+        *matRowDef="let asistencia; columns: displayedColumns"
+        (click)="editarAsistencia(asistencia)"
+        class="asistencia"
+        matRipple
+    >
+    </mat-row>
+</mat-table>
+<mat-paginator
+    #paginator
+    [length]="dataSource.filteredData.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    [style.display]="dataSource.filteredData.length != 0 ? 'block' : 'none'"
+>
+</mat-paginator>
+
+<div class="p-12" *ngIf="dataSource.filteredData.length == 0">
+    <span>No hay asistencias registradas</span>
+</div>
